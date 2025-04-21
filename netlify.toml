@@ -5,6 +5,7 @@
 [build.environment]
   NEXT_PUBLIC_API_URL = "https://resume-builder-backend-o1dc.onrender.com/"
   NODE_VERSION = "18"
+  PYTHON_VERSION = "3.9"
 
 # For Next.js 13+ with App Router
 [[plugins]]
