@@ -9,8 +9,15 @@
   NPM_FLAGS = "--prefer-offline --no-audit"
   NEXT_PUBLIC_API_URL = "https://resume-builder-backend-o1dc.onrender.com/"
   NODE_VERSION = "18"
-  PYTHON_VERSION = "3.9"
+  # Explicitly disable Python
+  PYTHON_ENABLE = "false"
+  # Force a specific Python version if Python is needed
+  PYTHON_VERSION = "3.9.7"
 
 # For Next.js 13+ with App Router
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Custom plugin to set Python version
+[[plugins]]
+  package = "./netlify/plugins/python-version"
