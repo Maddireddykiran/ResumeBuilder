@@ -2,8 +2,12 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "regions": ["all"],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://open-resume-backend.onrender.com"
+    "NEXT_PUBLIC_API_URL": "https://resume-builder-backend-o1dc.onrender.com/"
+  },
+  "functions": {
+    "*": {
+      "regions": ["iad1"]
+    }
   }
 }
