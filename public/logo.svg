@@ -1,0 +1,25 @@
+<svg width="100" height="40" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions -->
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="100%" stop-color="#34A853" />
+    </linearGradient>
+  </defs>
+  
+  <!-- MKR Text -->
+  <g font-family="Arial, sans-serif" font-weight="700" letter-spacing="0.5">
+    <!-- M -->
+    <path d="M15 10L20 20L25 10H30L20 28L10 10H15Z" fill="url(#gradient)" />
+    
+    <!-- K -->
+    <path d="M35 10H40V17L48 10H55L45 20L55 30H48L40 23V30H35V10Z" fill="url(#gradient)" />
+    
+    <!-- R -->
+    <path d="M60 10H75C77 10 79 12 79 15V17C79 20 77 22 75 22L80 30H74L70 22H65V30H60V10ZM65 14V18H73C74 18 74 14 73 14H65Z" fill="url(#gradient)" />
+  </g>
+  
+  <!-- Decorative element -->
+  <rect x="85" y="15" width="5" height="10" rx="2.5" fill="url(#gradient)" />
+</svg>
