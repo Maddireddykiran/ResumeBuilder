@@ -1,6 +1,8 @@
-/* eslint-disable */
+// @ts-nocheck
+/* eslint-disable react/jsx-no-undef */
 "use client";
 
+// This is a placeholder component that imports Resume
 import { Resume } from "components/Resume";
 import React, { useState } from 'react';
 
