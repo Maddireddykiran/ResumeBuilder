@@ -11,8 +11,7 @@
   NODE_VERSION = "18"
   # Explicitly disable Python
   PYTHON_ENABLE = "false"
-  # Force a specific Python version if Python is needed
-  PYTHON_VERSION = "3.9.7"
+
 
 # For Next.js 13+ with App Router
 [[plugins]]
