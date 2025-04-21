@@ -13,16 +13,7 @@
   .bg-primary {
     @apply bg-gradient-to-r from-[color:var(--theme-navy)] to-[color:var(--theme-navy-light)] text-white;
   }
-  .outline-theme-navy {{tailoredContent.workExperience.map((experience, idx) => (
-    <div key={idx}>
-      <div>{experience.company}</div>
-      <ul>
-        {experience.bulletPoints.map((point, i) => (
-          <li key={i}>{point}</li>
-        ))}
-      </ul>
-    </div>
-  ))}
+  .outline-theme-navy {
     @apply hover:opacity-80 hover:outline-[color:var(--theme-navy)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--theme-navy)];
   }
   .outline-theme-gold {

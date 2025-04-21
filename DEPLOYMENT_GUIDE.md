@@ -1,10 +1,10 @@
 # OpenResume Deployment Guide
 
 This guide provides step-by-step instructions for deploying the OpenResume application:
-- Frontend: Next.js application deployed to Vercel
+- Frontend: Next.js application deployed to Netlify
 - Backend: Flask API deployed to Render
 
-## Part 1: Backend Deployment to Render
+## Part 1: Backend Deployment to Render (Free Tier)
 
 ### Step 1: Prepare Your Repository
 
@@ -14,15 +14,20 @@ This guide provides step-by-step instructions for deploying the OpenResume appli
    - `requirements.txt` - Python dependencies
    - `render.yaml` - Render configuration
 
-### Step 2: Deploy to Render
+### Step 2: Deploy to Render (Free Tier)
 
 1. Sign up or log in to [Render](https://render.com)
-2. Click "New" and select "Blueprint" from the dropdown
+2. Click "New" and select "Web Service" from the dropdown (not "Blueprint")
 3. Connect your GitHub repository
-4. Render will automatically detect the `render.yaml` configuration
+4. Configure your web service:
+   - Name: Choose a name for your service
+   - Runtime: Select "Python"
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn app:app`
+   - **Important**: Select "Free" as your instance type
 5. Set the following environment variables:
    - `OPENAI_API_KEY`: Your OpenAI API key
-6. Click "Apply" to start the deployment
+6. Click "Create Web Service" to start the deployment
 
 ### Step 3: Verify Backend Deployment
 
@@ -30,30 +35,37 @@ This guide provides step-by-step instructions for deploying the OpenResume appli
 2. Test the health check endpoint by visiting `https://open-resume-backend.onrender.com/`
 3. You should see a JSON response with `"status": "online"`
 
-## Part 2: Frontend Deployment to Vercel
+### Free Tier Limitations to Be Aware Of
+
+1. Free web services will spin down after 15 minutes of inactivity
+2. When a request comes in, the service will spin up again (may take up to a minute)
+3. You get 750 free instance hours per month
+4. There are monthly bandwidth and build pipeline limits
+
+## Part 2: Frontend Deployment to Netlify
 
 ### Step 1: Prepare Your Repository
 
 1. Ensure you have the following files in your repository:
-   - `vercel.json` - Vercel configuration
-   - `next.config.js` - Next.js configuration
+   - `netlify.toml` (Netlify configuration, optional but recommended)
+   - `next.config.js` (Next.js configuration)
 
-### Step 2: Deploy to Vercel
+### Step 2: Deploy to Netlify
 
-1. Sign up or log in to [Vercel](https://vercel.com)
-2. Click "New Project"
-3. Import your GitHub repository
-4. Configure the project:
-   - Framework Preset: Next.js
+1. Sign up or log in to [Netlify](https://netlify.com)
+2. Click "Add new site" and select "Import an existing project"
+3. Connect your GitHub repository
+4. Configure the build settings:
    - Build Command: `npm run build`
-   - Output Directory: `.next`
+   - Publish Directory: `.next`
+   - Framework Preset: Next.js (if prompted)
 5. Add the following environment variable:
    - `NEXT_PUBLIC_API_URL`: The URL of your Render backend (e.g., `https://open-resume-backend.onrender.com`)
-6. Click "Deploy"
+6. Click "Deploy site"
 
 ### Step 3: Verify Frontend Deployment
 
-1. Once deployed, Vercel will provide a URL for your frontend application
+1. Once deployed, Netlify will provide a URL for your frontend application
 2. Test the application by visiting the provided URL
 3. Try the resume import feature with AI tailoring to verify the backend connection
 
@@ -72,16 +84,20 @@ This guide provides step-by-step instructions for deploying the OpenResume appli
 
 3. **CORS Issues**:
    - If you see CORS errors in the browser console, verify that the Flask CORS configuration is correct
-   - The backend should allow requests from your Vercel domain
+   - The backend should allow requests from your Netlify domain
+
+4. **Free Tier Spin-up Delay**:
+   - If your backend takes time to respond after periods of inactivity, this is normal for the free tier
+   - The first request after inactivity may take up to a minute to process
 
 ### Frontend Issues
 
 1. **Build Fails**:
-   - Check the Vercel build logs for error messages
+   - Check the Netlify build logs for error messages
    - Make sure all dependencies are correctly installed
 
 2. **Backend Connection Issues**:
-   - Verify that `NEXT_PUBLIC_API_URL` is set correctly in Vercel
+   - Verify that `NEXT_PUBLIC_API_URL` is set correctly in Netlify
    - Check the browser console for network errors
    - Try the health check endpoint directly to ensure the backend is running
 
@@ -95,7 +111,7 @@ This guide provides step-by-step instructions for deploying the OpenResume appli
 ### Frontend Updates
 
 1. Push changes to your GitHub repository
-2. Vercel will automatically rebuild and deploy the changes
+2. Netlify will automatically rebuild and deploy the changes
 
 ## Local Development After Deployment
 
